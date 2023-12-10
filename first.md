@@ -8,7 +8,7 @@ SELECT * FROM target.INFORMATION_SCHEMA.COLUMNS
 WHERE table_name = 'customers';
 
 ~~~
-![image] -1
+![image](SQL_imgs/Img_1.png)
 
 ~~~ SQL
 /*Code to count row numbers*/

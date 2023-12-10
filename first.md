@@ -38,6 +38,7 @@ SELECT Distinct geolocation_state, geolocation_city
 FROM `target-case-study-382707.target.geolocation`
 ~~~
 ![image](SQL_imgs/Img_1.4.png)
+(`<br>`)
 
 **2. In-depth Exploration**
 

@@ -58,8 +58,8 @@ ORDER BY Year,Month;
 ![image](SQL_imgs/Img_2.1.png)
 
 ASSUMPTION: Only counting the orders that were delivered
-
 INSIGHT: There is no clear indicator that the business is going up, but there are quite big windows when the business has a trend. Considering the number of orders(Year-Over-Year) we can say that the e-commerce trend is growing.
+
 
 **2.3 Analysis of time when Brazil customers tend to buy (Dawn, Morning, Afternoon or Night)**
 
@@ -90,6 +90,7 @@ Night ->  18 - 23
 
 **INSIGHT:** We can say that the majority of the orders in Brazil are placed during the night time(33,107) followed by order count in the afternoon(31,380). In the morning we have the least number of orders placed (5072) followed by the count of orders in the afternoon(26,919)
 
+
 **3. Evolution of E-commerce Orders in Brazil Region**
 
 **3.1 month-on-month orders by states**
@@ -114,6 +115,7 @@ FROM
 ~~~
 ![image](SQL_imgs/Img_3.1.png)
 
+
 **3.2 Distribution of customers across all the states.**
 
 ~~~ SQL
@@ -127,15 +129,12 @@ FROM `target-case-study-382707.target.customers`
 
 ![image](SQL_imgs/Img_3.2.png)
 
-ASSUMING: The customers are the ones who have registered, So no matter if they have made any purchases or not they have been included in the result.
-
-INSIGHTS:  São Paulo (SP) has the highest number of customers with a count of 41,746, followed by Rio de Janeiro (RJ) with 12,852 customers and Minas Gerais (MG) with 11,635 customers.
-
-
-In Total 27 states, the top 12 states have more than 1000 customers. 13th to 24th have customers of more than 100 but less than 1000. The bottom 3 states have less than 100 customers. 
-
-RECOMMENDATIONS : Focus on retaining customers in states with high customer counts by offering promotions, discounts, or loyalty programs to incentivize repeat purchases.
+**ASSUMING :** The customers are the ones who have registered, So no matter if they have made any purchases or not they have been included in the result.
+**INSIGHTS :** São Paulo (SP) has the highest number of customers with a count of 41,746, followed by Rio de Janeiro (RJ) with 12,852 customers and Minas Gerais (MG) with 11,635 customers.
+         In Total 27 states, the top 12 states have more than 1000 customers. 13th to 24th have customers of more than 100 but less than 1000. The bottom 3 states have less than 100 customers. 
+**RECOMMENDATIONS :** Focus on retaining customers in states with high customer counts by offering promotions, discounts, or loyalty programs to incentivize repeat purchases.
                   For states with low customer counts, consider targeted marketing campaigns to acquire new customers, such as social media advertising, inﬂuencer partnerships, or referral programs.
+
 
 **4. Impact on the Economy: Trying to analyse the money movement by e-commerce by looking at order prices, freight and others.**
 
@@ -157,7 +156,7 @@ SELECT *, (revenue-previous_revenue)/previous_revenue*100 as per_INC from base2
 **RECOMMENDATIONS :** Use the revenue data to inform budgeting and resource allocation decisions, such as increasing investments in marketing or expanding product offerings in high-growth areas.
 
 
-**4.2)	Mean & Sum of price and freight value by a customer state**
+**4.2 Mean & Sum of price and freight value by a customer state**
 
 ~~~ SQL
 SELECT
@@ -179,7 +178,7 @@ customer_state Order by price_sum
 
 **RECOMMENDATIONS :** The states with higher average prices and freight values may be good targets for marketing campaigns for higher-end products, while those with lower values may be better suited for more affordable products.
 
-**5.Analysis of sales, freight, and delivery time**
+**5. Analysis of sales, freight, and delivery time**
 **5.1 Calculate days between purchasing, delivering and estimated delivery**
 
 ~~~ SQL
@@ -206,12 +205,12 @@ FROM
 
 ![image](SQL_imgs/Img_5.1.png)
 
-**INSIGHT - ** There is a late delivery of max 189 days and there are several orders having this late delivery.
-**RECOMMENDATIONS - ** we can analyze the reason for the late delivery and give the correct estimated_delivery_date to the customer.
+**INSIGHT :** There is a late delivery of max 189 days and there are several orders having this late delivery.
+**RECOMMENDATIONS :** we can analyze the reason for the late delivery and give the correct estimated_delivery_date to the customer.
 
 ![image](SQL_imgs/Img_5.1.1.png)
 
-**INSIGHT**- After sorting data by Delivery_time we can see there is an order which is delivered on the same day or in 1 day.
+**INSIGHT :** After sorting data by Delivery_time we can see there is an order which is delivered on the same day or in 1 day.
 **RECOMMENDATIONS-** We can encourage these customers to give good reviews on our online platform or in google my business.
 
 **5.2 Analysing time_to_delivery & diff_estimated_delivery. Formula for the same given below:**
@@ -228,10 +227,11 @@ FROM `target.orders`
     WHERE order_delivered_customer_date IS NOT NULL 
     ORDER BY time_to_delivery
 ~~~
-![image](SQL_imgs/Img_5.2.1.png)
 
-**INSIGHT - ** some orders being delivered within a day while others take over 200 days. 
-**RECOMMENDATIONS - **Optimize logistics processes and consider partnering with reliable carriers to ensure timely deliveries.
+![image](SQL_imgs/5.2.1.png)
+
+**INSIGHT :** some orders being delivered within a day while others take over 200 days. 
+**RECOMMENDATIONS :**Optimize logistics processes and consider partnering with reliable carriers to ensure timely deliveries.
 
 ~~~ SQL
 SELECT
@@ -286,7 +286,7 @@ ORDER BY Avg_Freight DESC LIMIT 5;
 ~~~
 ![image](SQL_imgs/Img_5.3.png)
 
-**Top 5 states with highest/lowest average time to delivery**
+**5.5 Top 5 states with highest/lowest average time to delivery**
 
 ~~~ SQL
 SELECT
@@ -372,7 +372,7 @@ GROUP BY payment_installments order by order_count DESC
 ~~~
 ![image](SQL_imgs/Img_6.2.png)
 
-
+(_____)
 
 
 

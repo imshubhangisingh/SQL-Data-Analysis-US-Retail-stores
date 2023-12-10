@@ -375,7 +375,8 @@ GROUP BY payment_installments order by order_count DESC
 ~~~
 ![image](SQL_imgs/Img_6.2.png)
 
-(_____)
+
+!! THANK YOU !!
 
 
 

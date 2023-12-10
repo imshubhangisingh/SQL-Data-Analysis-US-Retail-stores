@@ -1,5 +1,5 @@
-**1. Importing the dataset and analysing the structure & characteristics of the dataset
-**
+**1.   Importing the dataset and analysing the structure & characteristics of the dataset**
+
 ~~~ SQL
 /*1.1 Data type of columns in a table*/
 /*customers*/
@@ -28,8 +28,9 @@ FROM `target-case-study-382707.target.orders`;
 ~~~
 ![image](SQL_imgs/Img_1.3.png)
 
-**The order_purchase_timestamp in the orders table contains the timestamp of each purchase. To get the range we need to find the timestamp of the first and the last purchase, for which we can apply the MIN and MAX functions on order_purchase_timestamp respectively. 
-**So we can see that the range of the given data set is 2016-09-04 21:15:19 UTC - 2018-10-17 17:30:18 UTC.
+The order_purchase_timestamp in the orders table contains the timestamp of each purchase. To get the range we need to find the timestamp of the first and the last purchase, for which we can apply the MIN and MAX functions on order_purchase_timestamp respectively. 
+
+So we can see that the range of the given data set is 2016-09-04 21:15:19 UTC - 2018-10-17 17:30:18 UTC.
 
 ~~~ SQL
 /*1.3 Cities and States of customers who ordered during the given period*/
@@ -39,11 +40,11 @@ FROM `target-case-study-382707.target.geolocation`
 ~~~
 ![image](SQL_imgs/Img_1.4.png)
 
-**2. In-depth Exploration**
+**2.   In-depth Exploration**
 
-**2.1 To check if there is any growing trend on e-commerce in Brazil. Description of the complete scenario.**
+**2.1   To check if there is any growing trend on e-commerce in Brazil. Description of the complete scenario.**
 
-**2.2 To check of there are some seasonality with peaks at specific months.**
+**2.2   To check of there are some seasonality with peaks at specific months.**
 
 ~~~ SQL
 SELECT
@@ -61,7 +62,7 @@ ASSUMPTION: Only counting the orders that were delivered
 INSIGHT: There is no clear indicator that the business is going up, but there are quite big windows when the business has a trend. Considering the number of orders(Year-Over-Year) we can say that the e-commerce trend is growing.
 
 
-**2.3 Analysis of time when Brazil customers tend to buy (Dawn, Morning, Afternoon or Night)**
+**2.3   Analysis of time when Brazil customers tend to buy (Dawn, Morning, Afternoon or Night)**
 
 ~~~ SQL
 SELECT
@@ -81,19 +82,19 @@ GROUP BY hour);
 
 ![image](SQL_imgs/Img_2.2.png)
 
-**ASSUMPTION:** I assume that the adjustment in the time of Brail was already done when this data was created.
+**ASSUMPTIONS :** I assume that the adjustment in the time of Brail was already done when this data was created.
 The time division for Morning, Dawn, Afternoon and Night has been done as following:
 Dawn -> 0 - 6
 Morning -> 7 - 12 
 Afternoon -> 13 - 17 
 Night ->  18 - 23 
 
-**INSIGHT:** We can say that the majority of the orders in Brazil are placed during the night time(33,107) followed by order count in the afternoon(31,380). In the morning we have the least number of orders placed (5072) followed by the count of orders in the afternoon(26,919)
+**INSIGHTS :** We can say that the majority of the orders in Brazil are placed during the night time(33,107) followed by order count in the afternoon(31,380). In the morning we have the least number of orders placed (5072) followed by the count of orders in the afternoon(26,919)
 
 
 **3. Evolution of E-commerce Orders in Brazil Region**
 
-**3.1 month-on-month orders by states**
+**3.1   month-on-month orders by states**
 
 ~~~ SQL
 SELECT
@@ -136,9 +137,9 @@ FROM `target-case-study-382707.target.customers`
                   For states with low customer counts, consider targeted marketing campaigns to acquire new customers, such as social media advertising, inﬂuencer partnerships, or referral programs.
 
 
-**4. Impact on the Economy: Trying to analyse the money movement by e-commerce by looking at order prices, freight and others.**
+**4.   Impact on the Economy: Trying to analyse the money movement by e-commerce by looking at order prices, freight and others.**
 
-**4.1 Perentage increase in the cost of orders from 2017 to 2018 (including months between Jan to Aug only) - using “payment_value” column in payments table.**
+**4.1   Perentage increase in the cost of orders from 2017 to 2018 (including months between Jan to Aug only) - using “payment_value” column in payments table.**
 
 ~~~ SQL
 With Base as (select
@@ -156,7 +157,7 @@ SELECT *, (revenue-previous_revenue)/previous_revenue*100 as per_INC from base2
 **RECOMMENDATIONS :** Use the revenue data to inform budgeting and resource allocation decisions, such as increasing investments in marketing or expanding product offerings in high-growth areas.
 
 
-**4.2 Mean & Sum of price and freight value by a customer state**
+**4.2   Mean & Sum of price and freight value by a customer state**
 
 ~~~ SQL
 SELECT
@@ -178,8 +179,9 @@ customer_state Order by price_sum
 
 **RECOMMENDATIONS :** The states with higher average prices and freight values may be good targets for marketing campaigns for higher-end products, while those with lower values may be better suited for more affordable products.
 
-**5. Analysis of sales, freight, and delivery time**
-**5.1 Calculate days between purchasing, delivering and estimated delivery**
+**5.   Analysis of sales, freight, and delivery time**
+
+**5.1   Calculate days between purchasing, delivering and estimated delivery**
 
 ~~~ SQL
 SELECT
@@ -205,13 +207,14 @@ FROM
 
 ![image](SQL_imgs/Img_5.1.png)
 
-**INSIGHT :** There is a late delivery of max 189 days and there are several orders having this late delivery.
+**INSIGHTS :** There is a late delivery of max 189 days and there are several orders having this late delivery.
 **RECOMMENDATIONS :** we can analyze the reason for the late delivery and give the correct estimated_delivery_date to the customer.
 
 ![image](SQL_imgs/Img_5.1.1.png)
 
-**INSIGHT :** After sorting data by Delivery_time we can see there is an order which is delivered on the same day or in 1 day.
+**INSIGHTS :**  After sorting data by Delivery_time we can see there is an order which is delivered on the same day or in 1 day.
 **RECOMMENDATIONS-** We can encourage these customers to give good reviews on our online platform or in google my business.
+
 
 **5.2 Analysing time_to_delivery & diff_estimated_delivery. Formula for the same given below:**
 
@@ -265,7 +268,7 @@ WHERE order_delivered_customer_date IS NOT NULL)
 
 ![image](SQL_imgs/Img_5.2.3.png)
 
-**5.4 Top 5 states with highest/lowest average freight value - sort in desc/asc limit 5**
+**5.4   Top 5 states with highest/lowest average freight value - sort in desc/asc limit 5**
 
 ~~~ SQL
 SELECT customer_state,AVG(freight_value) AS Avg_Freight
@@ -286,7 +289,7 @@ ORDER BY Avg_Freight DESC LIMIT 5;
 ~~~
 ![image](SQL_imgs/Img_5.3.png)
 
-**5.5 Top 5 states with highest/lowest average time to delivery**
+**5.5   Top 5 states with highest/lowest average time to delivery**
 
 ~~~ SQL
 SELECT
@@ -330,9 +333,9 @@ LIMIT 5;
 ![image](SQL_imgs/Img_5.5.png)
 
 
-**6.Payment type analysis:**
+**6.   Payment type analysis:**
 
-**6.1 Month over Month count of orders for different payment types**
+**6.1   Month over Month count of orders for different payment types**
 
 ~~~ SQL
 WITH
@@ -363,7 +366,7 @@ FROM base2
 ~~~
 ![image](SQL_imgs/Img_6.1.png)
 
-**6.2 Count of orders based on the no. of payment installments**
+**6.2   Count of orders based on the no. of payment installments**
 ~~~ SQL
 Select payment_installments,
 Count(distinct order_id) as order_count FROM
